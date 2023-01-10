@@ -1,0 +1,49 @@
+<resources>
+    <string name="app_name">u6_proyecto5_listview_radiobutton_ropero</string>
+    <!--Prendas-->
+    <string name="gorra">Gorra</string>
+    <string name="camiseta">Camiseta</string>
+    <string name="sudadera">Sudadera</string>
+    <string name="pantalon">Pantalon</string>
+    <string name="calcetin">Calcetin</string>
+    <string name="vestido">Vestido</string>
+    <string name="legging">Legging</string>
+    <!--Herramientas-->
+    <string name="precio">Precio:</string>
+    <string name="descripcion">Descripcion: </string>
+    <string name="talla">Talla: </string>
+    <string name="seleccion">Debe seleccionar un tamaño para continuar</string>
+    <string name="oferta">en oferta</string>
+    <!--Descripciones-->
+    <string name="gorramarron">Gorra marron</string>
+    <string name="gorranaranja">Gorra naranja</string>
+    <string name="gorraroja">Gorra roja</string>
+
+    <string name="camisetaazul">Camiseta azul</string>
+    <string name="camisetaverde">Camiseta verde</string>
+    <string name="camisetaamarilla">Camiseta amarilla</string>
+    <string name="camisetarosa">Camiseta rosa</string>
+
+    <string name="sudaderaazul">Sudadera comoda azul</string>
+    <string name="sudaderaverde">Sudadera comoda verde</string>
+    <string name="sudaderablanca">Sudadera comoda blanca</string>
+    <string name="sudaderaroja">Sudadera comoda roja</string>
+
+    <string name="pantalongris">Pantalones comodos grises</string>
+    <string name="pantalonamarillo">Pantalones comodos amarillos</string>
+    <string name="pantalonazul">Pantalones comodos azules</string>
+
+    <string name="calcetinrojo">Calcetines rojos comodos</string>
+    <string name="calcetingris">Calcetines grises comodos</string>
+    <string name="calcetinazul">Calcetines azules comodos</string>
+    <string name="calcetinmulticolor">Calcetines multicolor comodos</string>
+
+    <string name="vestidoverde">Vestido verde comodo</string>
+    <string name="vestidoprecioso">Vestido precioso</string>
+    <string name="vestidorojo">Vestido rojo comodo</string>
+
+    <string name="leggingazul">Legging azul</string>
+    <string name="leggingnegro">Legging negro</string>
+
+
+</resources>

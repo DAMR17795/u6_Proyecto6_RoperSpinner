@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">u6_proyecto5_listview_radiobutton_ropero</string>
+    <string name="gorra">Cap</string>
+    <string name="camiseta">T-shirt</string>
+    <string name="sudadera">Hoodie</string>
+    <string name="pantalon">Pants</string>
+    <string name="calcetin">Socks</string>
+    <string name="vestido">Dress</string>
+    <string name="legging">Legging</string>
+    <string name="precio">Price:</string>
+    <string name="descripcion">Description:</string>
+    <string name="talla">Size:</string>
+    <string name="seleccion">You must select a size to continue</string>
+    <string name="gorramarron">Brown cap</string>
+    <string name="gorranaranja">Orange cap</string>
+    <string name="gorraroja">Red cap</string>
+    <string name="camisetaazul">Blue T-shirt</string>
+    <string name="camisetaverde">Green T-shirt</string>
+    <string name="camisetaamarilla">Yellow T-shirt</string>
+    <string name="camisetarosa">Pink T-shirt</string>
+    <string name="sudaderaazul">Blue Comfortable Hoodie</string>
+    <string name="sudaderaverde">Green Comfortable Hoodie</string>
+    <string name="sudaderablanca">White Comfortable Hoodie</string>
+    <string name="sudaderaroja">Red Comfortable Hoodie</string>
+    <string name="pantalongris">Gray Comfortable Pants</string>
+    <string name="pantalonamarillo">Yellow Comfortable Pants</string>
+    <string name="pantalonazul">Blue Comfortable Pants</string>
+    <string name="calcetinrojo">Red Comfortable Socks</string>
+    <string name="calcetingris">Gray Comfortable Socks</string>
+    <string name="calcetinazul">Blue Comfortable Socks</string>
+    <string name="calcetinmulticolor">Multicolor Comfortable Socks</string>
+    <string name="vestidoverde">Green Comfortable Dress</string>
+    <string name="vestidoprecioso">Beautiful Dress</string>
+    <string name="vestidorojo">Red Comfortable Dress</string>
+    <string name="leggingazul">Blue Legging</string>
+    <string name="leggingnegro">Black Legging</string>
+    <string name="oferta">discounted</string>
+</resources>
