@@ -48,23 +48,41 @@ class PrendasAdapter (context: Context, prendas:List<Prendas>):ArrayAdapter<Pren
                 setImageResource(armario.imagen)
             }
 
-            vista.findViewById<TextView>(R.id.precioPrenda).apply {
+            /*vista.findViewById<TextView>(R.id.precioPrenda).apply {
                 text= context.resources.getString(R.string.precio) + " " + armario.precio.toString() + " €"
-            }
-
-            //Metodo para enviar la información a la segunda
-            //pantalla mediante click en
-            //el item
+            }*/
 
             //Spinner
             val spinner = vista.findViewById<Spinner>(R.id.spinnerTalla)
-            val tallas = arrayOf("Selecciona un tamaño", "S", "M", "L")
+            val tallas = arrayOf(context.resources.getString(R.string.seleccionTam), "S: " + "" + armario.precio + " €", "M: " + armario.precio + " €", "L: " + armario.precio + " €")
 
             val adapter: ArrayAdapter<String> = ArrayAdapter<String> (
                 context, android.R.layout.simple_spinner_item, tallas
             )
             spinner.setAdapter(adapter)
 
+            //OnItemSelectedListener en Spinner para mostrar precio
+            spinner?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+                override fun onNothingSelected(parent: AdapterView<*>?) {
+                }
+                override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                    val txtPrecio = vista.findViewById<TextView>(R.id.precioPrenda)
+                    val spinner = vista.findViewById<Spinner>(R.id.spinnerTalla)
+                    if (spinner.selectedItem.toString().equals("S: " + "" + armario.precio + " €")) {
+                        txtPrecio.setText(context.resources.getString(R.string.precio) + " " + armario.precio + " €")
+                    } else if (spinner.selectedItem.toString().equals("M: " + "" + armario.precio + " €")) {
+                        txtPrecio.setText(context.resources.getString(R.string.precio) + " " + armario.precio + " €")
+                    } else if (spinner.selectedItem.toString().equals("L: " + "" + armario.precio + " €")) {
+                        txtPrecio.setText(context.resources.getString(R.string.precio) + " " + armario.precio + " €")
+                    } else {
+                        txtPrecio.setText("")
+                    }
+                }
+            }
+
+            //Metodo para enviar la información a la segunda
+            //pantalla mediante click en
+            //el item
             vista.setOnClickListener{
 
                 //Recogemos valores
@@ -72,11 +90,8 @@ class PrendasAdapter (context: Context, prendas:List<Prendas>):ArrayAdapter<Pren
                 var descripcion = armario.descripcion
                 val imagen = armario.imagen
                 val precio = armario.precio
-                val tamanioS = vista.findViewById<RadioButton>(R.id.tallaS)
-                val tamanioM = vista.findViewById<RadioButton>(R.id.tallaM)
-                val tamanioL = vista.findViewById<RadioButton>(R.id.tallaL)
-                val radio = vista.findViewById<RadioGroup>(R.id.radioGroup)
                 val spinner = vista.findViewById<Spinner>(R.id.spinnerTalla)
+                val txtPrecio = vista.findViewById<TextView>(R.id.precioPrenda)
 
 
                 //Para establecer el string para la traducción
@@ -172,14 +187,10 @@ class PrendasAdapter (context: Context, prendas:List<Prendas>):ArrayAdapter<Pren
                     }
                 }
 
-                //OnLongClickListener
-                vista.setOnLongClickListener{
-                    Toast.makeText(context, descripcion + " " + context.resources.getString(R.string.oferta), Toast.LENGTH_SHORT).show()
-                    true
-                }
-
                 //Comprobamos que cualquiera de los radiobutton esté marcado
-                if (!tamanioS.isChecked && !tamanioL.isChecked && !tamanioM.isChecked) {
+                var texto = spinner.selectedItem.toString()
+
+                if (texto.equals(context.resources.getString(R.string.seleccionTam))) {
                     Toast.makeText(context, context.resources.getString(R.string.seleccion), Toast.LENGTH_SHORT).show()
                 } else {
                     //Intent segunda pantalla
@@ -191,39 +202,41 @@ class PrendasAdapter (context: Context, prendas:List<Prendas>):ArrayAdapter<Pren
                     enviar.putExtra("IMAGEN", imagen)
                     enviar.putExtra("PRECIO", precio)
 
-                    /*if (tamanioS.isChecked) {
-                        enviar.putExtra("TALLA", tamanioS.getText().toString())
-                    }
-                    if (tamanioM.isChecked) {
-                        enviar.putExtra("TALLA", tamanioM.getText().toString())
-                    }
-                    if (tamanioL.isChecked) {
-                        enviar.putExtra("TALLA", tamanioL.getText().toString())
-                    }*/
-                    var texto = spinner.selectedItem.toString()
 
-                    if (texto.equals("L")) {
-                        enviar.putExtra("TALLA", tamanioL.getText().toString())
+                    if (texto.equals("L: " + "" + precio + " €")) {
+                        enviar.putExtra("TALLA", "L")
                     }
 
-                    if (texto.equals("M")) {
-                        enviar.putExtra("TALLA", tamanioM.getText().toString())
+                    if (texto.equals("M: " + "" + precio + " €")) {
+                        enviar.putExtra("TALLA", "M")
                     }
 
-                    if (texto.equals("S")) {
-                        enviar.putExtra("TALLA", tamanioS.getText().toString())
+                    if (texto.equals("S: " + "" + precio + " €")) {
+                        enviar.putExtra("TALLA", "S")
                     }
-
-
 
                     //Comienza la actividad
                     context.startActivity(enviar)
-
-                    //Establecemos todos los radiobutton del radiogroup a no marcado
-                    radio.clearCheck()
-
                 }
             }
+
+            //OnLongClickListener
+            /*vista.setOnLongClickListener{
+                if (armario.descripcion.equals("Camiseta azul")) {
+                    Toast.makeText(context, context.resources.getString(R.string.camisetaazul) + " " + context.resources.getString(R.string.oferta), Toast.LENGTH_SHORT).show()
+                }
+                if (armario.descripcion.equals("Camiseta verde")) {
+                    Toast.makeText(context, context.resources.getString(R.string.camisetaverde) + " " + context.resources.getString(R.string.oferta), Toast.LENGTH_SHORT).show()
+                }
+                if (armario.descripcion.equals("Camiseta amarilla")) {
+                    descripcion = context.resources.getString(R.string.camisetaamarilla)
+                }
+                if (armario.descripcion.equals("Camiseta rosa")) {
+                    descripcion = context.resources.getString(R.string.camisetarosa)
+                }
+                Toast.makeText(context, context.resources.getString() + " " + context.resources.getString(R.string.oferta), Toast.LENGTH_SHORT).show()
+                true
+            }*/
         }
 
         return vista

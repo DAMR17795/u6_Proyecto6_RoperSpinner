@@ -24,10 +24,10 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="308dp"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginLeft="25dp">
+        android:layout_marginLeft="25dp"
+        android:orientation="horizontal">
 
         <ImageView
             android:id="@+id/imagenPrenda"
@@ -36,42 +36,14 @@
             android:padding="10dp"
             android:src="@drawable/calcetin"></ImageView>
 
-        <RadioGroup
-            android:id="@+id/radioGroup"
-            android:layout_width="wrap_content"
+        <Spinner
+            android:id="@+id/spinnerTalla"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <RadioButton
-                android:id="@+id/tallaS"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:padding="10dp"
-                android:text="S"></RadioButton>
-
-            <RadioButton
-                android:id="@+id/tallaM"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:text="M"></RadioButton>
-
-            <RadioButton
-                android:id="@+id/tallaL"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:text="L"></RadioButton>
-        </RadioGroup>
+            android:layout_marginTop="35dp"
+            android:layout_weight="1" />
 
     </LinearLayout>
-
-    <Spinner
-        android:id="@+id/spinnerTalla"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -89,4 +61,5 @@
             android:textSize="20sp"
             android:textStyle="bold" />
     </LinearLayout>
+
 </LinearLayout>
