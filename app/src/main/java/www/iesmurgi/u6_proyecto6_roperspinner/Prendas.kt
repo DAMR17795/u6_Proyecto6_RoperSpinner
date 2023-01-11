@@ -3,9 +3,9 @@ package www.iesmurgi.u6_proyecto6_roperspinner
 import android.content.res.Resources
 
 
-data class Prendas(val id: Int, val nombre: String, val numPrenda: String, val descripcion:String, val imagen:Int, val precio:Double, val cantidad:Int) {
+data class Prendas(val id: Int, val nombre: String, val numPrenda: String, val descripcion:String, val imagen:Int, val precio:Double, var cantidad:Int) {
     companion object {
-        val prendasSource = listOf(
+        val prendasSource = mutableListOf(
             Prendas(0,"Gorra", "", "Gorra marron", imagen = R.drawable.gorra, 9.99 , 0)
             ,Prendas(1,"Gorra", "1", "Gorra naranja", imagen = R.drawable.gorra1, 8.99, 0)
             ,Prendas(2,"Gorra", "2", "Gorra roja", imagen = R.drawable.gorra2, 7.99, 0)
@@ -33,6 +33,7 @@ data class Prendas(val id: Int, val nombre: String, val numPrenda: String, val d
 
         )
 
+        val prendasCogidas= mutableListOf<Prendas>()
 
     }
     override fun toString(): String {

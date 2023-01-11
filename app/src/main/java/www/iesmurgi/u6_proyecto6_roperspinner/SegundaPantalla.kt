@@ -12,7 +12,7 @@ class SegundaPantalla: AppCompatActivity() {
     private lateinit var btCompra: Button
     private lateinit var nombrePrenda:TextView
     private lateinit var cantidadCarrito:TextView
-    public var id:Int =0
+    var id: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,19 +23,16 @@ class SegundaPantalla: AppCompatActivity() {
         btCompra = binding.btCarrito
         nombrePrenda = binding.nombreAtuendo
         cantidadCarrito = binding.cantidadAtuendo
+
         btCompra.setOnClickListener {
-            Prendas.prendasSource.filter {
-               it.id == id
-            }.forEach { it.cantidad == it.cantidad + cantidadCarrito.text.toString().toInt() }
-
+            /*Prendas.prendasSource.filter {
+               it.id == id.toString().toInt()
+            }.forEach { it.cantidad == it.cantidad + cantidadCarrito.text.toString().toInt() }*/
+            actualizarCantidadArray(cantidadCarrito.text.toString().toInt());
             for (i in Prendas.prendasSource){
-
                 println(i.cantidad)
-
             }
-
         }
-
         //Muestra el item de listView
         mostrar()
 
@@ -68,6 +65,11 @@ class SegundaPantalla: AppCompatActivity() {
         }
     }
 
+    private fun actualizarCantidadArray(cantidad:Int){
+        Prendas.prendasSource.filter { it.id == id.toString().toInt()}.forEach { it.cantidad = cantidad }
+
+    }
+
 
     fun mostrar() {
         //Constantes binding-xml
@@ -85,7 +87,7 @@ class SegundaPantalla: AppCompatActivity() {
         val descripcion = mibundle?.getString("DESCRIPCION")
         val tamanio = mibundle?.getString("TALLA")
         val precio = mibundle?.getDouble("PRECIO")
-        id = mibundle?.getInt("ID")!!
+        id = mibundle?.getInt("ID").toString()
 
         //Establecemos los valores en el xml
         nombreAtuendo.setText(nombre)

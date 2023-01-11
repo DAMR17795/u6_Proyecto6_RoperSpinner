@@ -16,8 +16,25 @@ class Carrito : AppCompatActivity() {
         setContentView(binding.root)
 
         lista = binding.miListaCarrito
+        cargar()
 
-        CarritoAdapter(this, Prendas.prendasSource).also {
+
+    }
+
+    fun cargar() {
+        for (i in Prendas.prendasSource) {
+            if(i.cantidad >0) {
+                var prenda: Prendas=Prendas(i.id, i.nombre, i.numPrenda,i.descripcion, i.imagen, i.precio,i.cantidad)
+                Prendas.prendasCogidas.add(prenda)
+            }
+        }
+        CarritoAdapter(this, Prendas.prendasCogidas).also {
                 adaptador -> lista.setAdapter(adaptador)}
     }
+
+    /*override fun onBackPressed() {
+        super.onBackPressed()
+        println(Prendas.prendasCogidas.get(0))
+        Prendas.prendasCogidas.clear()
+    }*/
 }

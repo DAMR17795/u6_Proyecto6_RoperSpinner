@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.core.content.ContextCompat.startActivity
 import androidx.core.view.get
 
 
@@ -28,6 +29,20 @@ class CarritoAdapter (context: Context, prendas:List<Prendas>):ArrayAdapter<Pren
                 setImageResource(armario.imagen)
             }
 
+            var btCerrar:Button = vista.findViewById<Button>(R.id.btEliminar)
+            btCerrar.setOnClickListener {
+                println("ID:" + armario.id)
+                var cantidad:TextView=vista.findViewById<TextView>(R.id.lblCantidad)
+                cantidad.text = "0"
+                //Prendas.prendasCogidas.removeAt(position)
+                Prendas.prendasCogidas.find { i -> i.id == armario.id }.apply { Prendas.prendasCogidas.removeAt(position) }
+
+                Prendas.prendasSource.filter { it.id == armario.id}.forEach { it.cantidad = cantidad.text.toString().toInt() }
+                //var enviar = Intent (context, Carrito::class.java)
+                println(armario.cantidad)
+                //context.startActivity(enviar)
+            }
+
         }
 
         return vista
@@ -35,3 +50,4 @@ class CarritoAdapter (context: Context, prendas:List<Prendas>):ArrayAdapter<Pren
 
 
 }
+
