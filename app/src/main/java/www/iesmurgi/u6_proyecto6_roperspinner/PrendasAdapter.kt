@@ -201,6 +201,7 @@ class PrendasAdapter (context: Context, prendas:List<Prendas>):ArrayAdapter<Pren
                     enviar.putExtra("DESCRIPCION", descripcion)
                     enviar.putExtra("IMAGEN", imagen)
                     enviar.putExtra("PRECIO", precio)
+                    enviar.putExtra("ID", armario.id)
 
 
                     if (texto.equals("L: " + "" + precio + " €")) {

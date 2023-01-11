@@ -1,16 +1,40 @@
 package www.iesmurgi.u6_proyecto6_roperspinner
 
 import android.os.Bundle
+import android.widget.Button
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import org.w3c.dom.Text
 import www.iesmurgi.u6_proyecto6_roperspinner.databinding.PantallaSegundaBinding
 
 class SegundaPantalla: AppCompatActivity() {
     private lateinit var binding: PantallaSegundaBinding
+    private lateinit var btCompra: Button
+    private lateinit var nombrePrenda:TextView
+    private lateinit var cantidadCarrito:TextView
+    public var id:Int =0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = PantallaSegundaBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        //Boton Carrito
+        btCompra = binding.btCarrito
+        nombrePrenda = binding.nombreAtuendo
+        cantidadCarrito = binding.cantidadAtuendo
+        btCompra.setOnClickListener {
+            Prendas.prendasSource.filter {
+               it.id == id
+            }.forEach { it.cantidad == it.cantidad + cantidadCarrito.text.toString().toInt() }
+
+            for (i in Prendas.prendasSource){
+
+                println(i.cantidad)
+
+            }
+
+        }
 
         //Muestra el item de listView
         mostrar()
@@ -23,7 +47,7 @@ class SegundaPantalla: AppCompatActivity() {
         //Boton al botonMenos para quitar cantidad
         binding.botonMenos.setOnClickListener{
             if (precioActual != null) {
-                if (contador >1) {
+                if (contador > 1) {
                     contador -=1
                     binding.cantidadAtuendo.setText(contador.toString())
                     var precio = precioActual * contador
@@ -61,6 +85,7 @@ class SegundaPantalla: AppCompatActivity() {
         val descripcion = mibundle?.getString("DESCRIPCION")
         val tamanio = mibundle?.getString("TALLA")
         val precio = mibundle?.getDouble("PRECIO")
+        id = mibundle?.getInt("ID")!!
 
         //Establecemos los valores en el xml
         nombreAtuendo.setText(nombre)
@@ -68,9 +93,9 @@ class SegundaPantalla: AppCompatActivity() {
         imagen?.let { imagenAtuendo.setImageResource(it) }
         talla.setText(getString(R.string.talla) + " " + tamanio)
         precioPrenda.setText(getString(R.string.precio) + " " + precio.toString() + " €")
+        //precioPrenda.setText(getString(R.string.precio) + " " + "0.0" + " €")
         cantidad.setText("1")
     }
-
 
 
 }
