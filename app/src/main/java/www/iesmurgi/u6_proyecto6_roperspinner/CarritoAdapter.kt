@@ -34,8 +34,8 @@ class CarritoAdapter (context: Context, prendas:List<Prendas>):ArrayAdapter<Pren
                 println("ID:" + armario.id)
                 var cantidad:TextView=vista.findViewById<TextView>(R.id.lblCantidad)
                 cantidad.text = "0"
-                //Prendas.prendasCogidas.removeAt(position)
-                Prendas.prendasCogidas.find { i -> i.id == armario.id }.apply { Prendas.prendasCogidas.removeAt(position) }
+                Prendas.prendasCogidas.removeAt(position)
+
 
                 Prendas.prendasSource.filter { it.id == armario.id}.forEach { it.cantidad = cantidad.text.toString().toInt() }
                 //var enviar = Intent (context, Carrito::class.java)
