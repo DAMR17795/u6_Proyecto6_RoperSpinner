@@ -34,16 +34,24 @@ class CarritoAdapter (context: Context, prendas:List<Prendas>):ArrayAdapter<Pren
             var btCerrar:Button = vista.findViewById<Button>(R.id.btEliminar)
             btCerrar.setOnClickListener {
                 Prendas.prendasSource.filter { it.id == armario.id}.forEach { it.cantidad = 0}
-                //Prendas.prendasCogidas.removeAt(position)
-                Prendas.prendasCogidas.clear()
-                val enviar = Intent (context, Carrito::class.java)
-                context.startActivity(enviar)
-                (context as Activity).finish()
+                Prendas.prendasCogidas.removeAt(position)
+                //No Borrar importante
+                //Prendas.prendasCogidas.clear()
+                if (Prendas.prendasCogidas.size > 0) {
+                    Prendas.prendasCogidas.clear()
+                    val enviar = Intent (context, Carrito::class.java)
+                    context.startActivity(enviar)
+                    (context as Activity).finish()
+                } else {
+                    val enviar = Intent (context, MainActivity::class.java)
+                    context.startActivity(enviar)
+                    (context as Activity).finish()
+                }
+
             }
 
             var btMas:Button = vista.findViewById<Button>(R.id.btMas)
             var btMenos:Button = vista.findViewById<Button>(R.id.btMenos)
-            //var id: String? = null
             var precio =0.0
             var precioMostrar = armario.precio * vista.findViewById<TextView>(R.id.lblCantidad).getText().toString().toInt()
             var contador= vista.findViewById<TextView>(R.id.lblCantidad).getText().toString().toInt()
