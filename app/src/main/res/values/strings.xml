@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">u6_proyecto5_listview_radiobutton_ropero</string>
+    <string name="app_name">u6_proyecto6_roperospinner</string>
     <!--Prendas-->
     <string name="gorra">Gorra</string>
     <string name="camiseta">Camiseta</string>

@@ -1,13 +1,15 @@
 package www.iesmurgi.u6_proyecto6_roperspinner
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.*
-import androidx.core.content.ContextCompat.startActivity
-import androidx.core.view.get
+import android.widget.ArrayAdapter
+import android.widget.Button
+import android.widget.ImageView
+import android.widget.TextView
 
 
 class CarritoAdapter (context: Context, prendas:List<Prendas>):ArrayAdapter<Prendas>(context, 0, prendas) {
@@ -31,16 +33,11 @@ class CarritoAdapter (context: Context, prendas:List<Prendas>):ArrayAdapter<Pren
 
             var btCerrar:Button = vista.findViewById<Button>(R.id.btEliminar)
             btCerrar.setOnClickListener {
-                println("ID:" + armario.id)
-                var cantidad:TextView=vista.findViewById<TextView>(R.id.lblCantidad)
-                cantidad.text = "0"
+                Prendas.prendasSource.filter { it.id == armario.id}.forEach { it.cantidad = 0}
                 Prendas.prendasCogidas.removeAt(position)
-
-
-                Prendas.prendasSource.filter { it.id == armario.id}.forEach { it.cantidad = cantidad.text.toString().toInt() }
-                //var enviar = Intent (context, Carrito::class.java)
-                println(armario.cantidad)
-                //context.startActivity(enviar)
+                val enviar = Intent (context, Carrito::class.java)
+                context.startActivity(enviar)
+                (context as Activity).finish()
             }
 
         }

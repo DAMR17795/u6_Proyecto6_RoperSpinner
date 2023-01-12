@@ -13,6 +13,7 @@ class SegundaPantalla: AppCompatActivity() {
     private lateinit var nombrePrenda:TextView
     private lateinit var cantidadCarrito:TextView
     var id: String? = null
+    //var quantity: Int? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,15 +25,6 @@ class SegundaPantalla: AppCompatActivity() {
         nombrePrenda = binding.nombreAtuendo
         cantidadCarrito = binding.cantidadAtuendo
 
-        btCompra.setOnClickListener {
-            /*Prendas.prendasSource.filter {
-               it.id == id.toString().toInt()
-            }.forEach { it.cantidad == it.cantidad + cantidadCarrito.text.toString().toInt() }*/
-            actualizarCantidadArray(cantidadCarrito.text.toString().toInt());
-            for (i in Prendas.prendasSource){
-                println(i.cantidad)
-            }
-        }
         //Muestra el item de listView
         mostrar()
 
@@ -63,10 +55,18 @@ class SegundaPantalla: AppCompatActivity() {
                 binding.precioAtuendo.setText(getString(R.string.precio) + " " + precio.toFloat().toString() + " €")
             }
         }
+
+        btCompra.setOnClickListener {
+            actualizarCantidadArray(cantidadCarrito.text.toString().toInt());
+            for (i in Prendas.prendasSource){
+                println(i.cantidad)
+            }
+        }
     }
 
+
     private fun actualizarCantidadArray(cantidad:Int){
-        Prendas.prendasSource.filter { it.id == id.toString().toInt()}.forEach { it.cantidad = cantidad }
+        Prendas.prendasSource.filter { it.id == id.toString().toInt()}.forEach { it.cantidad += cantidad}
 
     }
 
@@ -88,6 +88,7 @@ class SegundaPantalla: AppCompatActivity() {
         val tamanio = mibundle?.getString("TALLA")
         val precio = mibundle?.getDouble("PRECIO")
         id = mibundle?.getInt("ID").toString()
+        //quantity = mibundle?.getInt("CANTIDAD")
 
         //Establecemos los valores en el xml
         nombreAtuendo.setText(nombre)
@@ -97,6 +98,11 @@ class SegundaPantalla: AppCompatActivity() {
         precioPrenda.setText(getString(R.string.precio) + " " + precio.toString() + " €")
         //precioPrenda.setText(getString(R.string.precio) + " " + "0.0" + " €")
         cantidad.setText("1")
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        finish()
     }
 
 

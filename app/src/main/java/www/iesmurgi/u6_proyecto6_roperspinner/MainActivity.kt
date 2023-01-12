@@ -24,6 +24,8 @@ class MainActivity : AppCompatActivity() {
 
         btCarrito = binding.btVerCarrito
 
+
+        //Boton ver carrito click
         btCarrito.setOnClickListener {
             val enviar = Intent (this, Carrito::class.java)
             startActivity(enviar)
@@ -34,4 +36,6 @@ class MainActivity : AppCompatActivity() {
                 adaptador -> miLista.setAdapter(adaptador)}
 
     }
+
+
 }

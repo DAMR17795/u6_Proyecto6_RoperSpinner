@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">u6_proyecto5_listview_radiobutton_ropero</string>
+    <string name="app_name">u6_proyecto6_roperospinner</string>
     <string name="gorra">Cap</string>
     <string name="camiseta">T-shirt</string>
     <string name="sudadera">Hoodie</string>
