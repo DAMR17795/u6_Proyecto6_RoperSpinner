@@ -16,6 +16,7 @@ class Carrito : AppCompatActivity() {
         setContentView(binding.root)
         lista = binding.miListaCarrito
         cargar()
+        mostrarArrray()
         CarritoAdapter(this, Prendas.prendasCogidas).also {
                 adaptador -> lista.setAdapter(adaptador)}
 
@@ -29,6 +30,8 @@ class Carrito : AppCompatActivity() {
 
         var prendasActualizadas= mutableListOf<Prendas>()
         var prendasAniadidas = mutableListOf<Prendas>()
+        var prendasFinales = mutableListOf<Prendas>()
+
 
         for (i in Prendas.prendasSource) {
             if(i.cantidad > 0 && !Prendas.prendasCogidas.contains(Prendas.prendasSource.get(contador))) {
@@ -39,7 +42,8 @@ class Carrito : AppCompatActivity() {
             }
             for (j in Prendas.prendasCogidas) {
                 if (i.id == j.id && i.cantidad != j.cantidad) {
-                    prendasActualizadas.add(Prendas.prendasCogidas.get(contador2))
+                    //prendasActualizadas.add(Prendas.prendasCogidas.get(contador2))
+                    prendasActualizadas.add(i)
                     contador2++
                 }
                 contador2++
@@ -48,58 +52,38 @@ class Carrito : AppCompatActivity() {
         }
 
         contador=0
-        contador2=0
-        if (Prendas.prendasCogidas.size >0) {
-            if (prendasActualizadas.size >0) {
-                for (a in Prendas.prendasCogidas) {
-                    if (a.id == prendasActualizadas.get(contador2).id && a.cantidad != prendasActualizadas.get(contador2).cantidad) {
-                        a.cantidad = prendasActualizadas.get(contador2).cantidad
 
-                        //Prendas.prendasCogidas.removeAt(contador2)
-                        //Prendas.prendasCogidas.add(contador2, prendasActualizadas.get(contador))
-                        contador++
-                        contador2++
-                    }
-                    contador2++
-                }
-            }
-
-        }
-
-        /*println("Prendas Cogidas: " + Prendas.prendasCogidas)
-        println("Prendas Aniadidas: " + prendasAniadidas)
-        println("Prendas Actualizadas: " + prendasActualizadas)
         for (i in prendasAniadidas) {
             if (prendasActualizadas.contains(prendasAniadidas.get(contador))) {
                 prendasAniadidas.removeAt(contador)
                 contador++
             }
         }
-        contador=0
-        for (i in prendasActualizadas) {
-            if (prendasAniadidas.contains(prendasActualizadas.get(contador))) {
-                //la que cambie
-                prendasActualizadas.removeAt(contador)
-                contador++
-            }
-        }*/
-        println("DESPUÉS DE BUCLES")
-        println("Prendas Aniadidas: " + prendasAniadidas)
-        println("Prendas Actualizadas: " + prendasActualizadas)
 
-        //Prendas.prendasCogidas.clear()
-        println("Prendas Cogidas: " + Prendas.prendasCogidas)
-        //Prendas.prendasCogidas.addAll(prendasAniadidas)
-        println("Prendas Cogidas: " + Prendas.prendasCogidas)
-        //Prendas.prendasCogidas.addAll(prendasActualizadas)
+        println("************************FIN******************************")
+        for (i in Prendas.prendasCogidas) {
+            println("Prendas dentro de array: " + i.descripcion)
+            println("Cantidad: " + i.cantidad)
+        }
+        Prendas.prendasCogidas.clear()
+        Prendas.prendasCogidas.addAll(prendasAniadidas)
 
-        /*CarritoAdapter(this, Prendas.prendasCogidas).also {
-                adaptador -> lista.setAdapter(adaptador)}*/
+        //prendasActualizadas.clear()
+        //prendasAniadidas.clear()
 
     }
 
     override fun onBackPressed() {
         super.onBackPressed()
+        Prendas.prendasCogidas.clear()
         finish()
+    }
+
+    fun mostrarArrray() {
+        for (i in Prendas.prendasCogidas) {
+            println("^^^^^^^^^^^^^METODO A FUERA^^^^^^^^^^^^^^^^^^")
+            println("Prendas dentro de array: " + i.descripcion)
+            println("Cantidad: " + i.cantidad)
+        }
     }
 }

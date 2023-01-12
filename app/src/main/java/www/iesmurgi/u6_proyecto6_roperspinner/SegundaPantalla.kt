@@ -58,6 +58,7 @@ class SegundaPantalla: AppCompatActivity() {
 
         btCompra.setOnClickListener {
             actualizarCantidadArray(cantidadCarrito.text.toString().toInt());
+            Prendas.prendasCogidas.clear()
             for (i in Prendas.prendasSource){
                 println(i.cantidad)
             }
@@ -67,7 +68,6 @@ class SegundaPantalla: AppCompatActivity() {
 
     private fun actualizarCantidadArray(cantidad:Int){
         Prendas.prendasSource.filter { it.id == id.toString().toInt()}.forEach { it.cantidad += cantidad}
-
     }
 
 

@@ -34,17 +34,15 @@ class CarritoAdapter (context: Context, prendas:List<Prendas>):ArrayAdapter<Pren
             var btCerrar:Button = vista.findViewById<Button>(R.id.btEliminar)
             btCerrar.setOnClickListener {
                 Prendas.prendasSource.filter { it.id == armario.id}.forEach { it.cantidad = 0}
-                Prendas.prendasCogidas.removeAt(position)
+                //Prendas.prendasCogidas.removeAt(position)
+                Prendas.prendasCogidas.clear()
                 val enviar = Intent (context, Carrito::class.java)
                 context.startActivity(enviar)
                 (context as Activity).finish()
             }
-
         }
-
         return vista
     }
-
 
 }
 
