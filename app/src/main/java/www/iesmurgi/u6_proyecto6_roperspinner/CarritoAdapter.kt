@@ -66,7 +66,15 @@ class CarritoAdapter (context: Context, prendas:List<Prendas>):ArrayAdapter<Pren
                     vista.findViewById<TextView>(R.id.lblCantidad).setText(contador.toString())
                     var precio = armario.precio * contador
                     vista.findViewById<TextView>(R.id.precioPrenda).setText(context.resources.getString(R.string.precio) + " " + precio.toFloat().toString() + " €")
+                    Prendas.prendasSource.filter { it.id == armario.id.toString().toInt()}.forEach { it.cantidad = contador}
+                    val enviar = Intent (context, Carrito::class.java)
+                    context.startActivity(enviar)
+                    //Importante
+                    Prendas.prendasCogidas.clear()
+                    (context as Activity).finish()
                 }
+
+
                 println("Resultado: " + precio)
                 /*vista.findViewById<TextView>(R.id.precioFinal).apply {
                     text= precio.toString() + ""
@@ -85,6 +93,12 @@ class CarritoAdapter (context: Context, prendas:List<Prendas>):ArrayAdapter<Pren
                         vista.findViewById<TextView>(R.id.lblCantidad).setText(contador.toString())
                         var precio = armario.precio * contador
                         vista.findViewById<TextView>(R.id.precioPrenda).setText(context.resources.getString(R.string.precio) + " " + precio.toFloat().toString() + " €")
+                        Prendas.prendasSource.filter { it.id == armario.id.toString().toInt()}.forEach { it.cantidad = contador}
+                        val enviar = Intent (context, Carrito::class.java)
+                        context.startActivity(enviar)
+                        //Importante
+                        Prendas.prendasCogidas.clear()
+                        (context as Activity).finish()
                     }
                 }
                 println("Resultado: " + precio)
