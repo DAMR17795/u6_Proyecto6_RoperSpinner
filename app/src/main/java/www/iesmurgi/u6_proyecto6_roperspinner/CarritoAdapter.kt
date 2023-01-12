@@ -40,6 +40,53 @@ class CarritoAdapter (context: Context, prendas:List<Prendas>):ArrayAdapter<Pren
                 context.startActivity(enviar)
                 (context as Activity).finish()
             }
+
+            var btMas:Button = vista.findViewById<Button>(R.id.btMas)
+            var btMenos:Button = vista.findViewById<Button>(R.id.btMenos)
+            //var id: String? = null
+            var precio =0.0
+            var precioMostrar = armario.precio * vista.findViewById<TextView>(R.id.lblCantidad).getText().toString().toInt()
+            var contador= vista.findViewById<TextView>(R.id.lblCantidad).getText().toString().toInt()
+            btMas.setOnClickListener{
+                precio=0.0
+                for (i in Prendas.prendasCogidas) {
+                    precio += i.cantidad * i.precio
+                    println("Precio Final: " + precio)
+                }
+                if (vista.findViewById<TextView>(R.id.lblCantidad) != null) {
+                    contador +=1
+                    vista.findViewById<TextView>(R.id.lblCantidad).setText(contador.toString())
+                    var precio = armario.precio * contador
+                    vista.findViewById<TextView>(R.id.precioPrenda).setText(context.resources.getString(R.string.precio) + " " + precio.toFloat().toString() + " €")
+                }
+                println("Resultado: " + precio)
+                /*vista.findViewById<TextView>(R.id.precioFinal).apply {
+                    text= precio.toString() + ""
+                }*/
+            }
+
+            btMenos.setOnClickListener{
+                precio=0.0
+                for (i in Prendas.prendasCogidas) {
+                    precio += i.cantidad * i.precio
+                    println("Precio Final: " + precio)
+                }
+                if (vista.findViewById<TextView>(R.id.lblCantidad) != null) {
+                    if (contador > 1) {
+                        contador -=1
+                        vista.findViewById<TextView>(R.id.lblCantidad).setText(contador.toString())
+                        var precio = armario.precio * contador
+                        vista.findViewById<TextView>(R.id.precioPrenda).setText(context.resources.getString(R.string.precio) + " " + precio.toFloat().toString() + " €")
+                    }
+                }
+                println("Resultado: " + precio)
+                /*vista.findViewById<TextView>(R.id.precioFinal).apply {
+                    text= precio.toString() + ""
+                }*/
+            }
+
+            vista.findViewById<TextView>(R.id.precioPrenda).setText(context.resources.getString(R.string.precio) + " " + precioMostrar.toFloat().toString() + " €")
+
         }
         return vista
     }
