@@ -15,9 +15,9 @@ class Carrito : AppCompatActivity() {
         binding = CarritoBinding.inflate(layoutInflater)
         setContentView(binding.root)
         lista = binding.miListaCarrito
+        cargar()
         CarritoAdapter(this, Prendas.prendasCogidas).also {
                 adaptador -> lista.setAdapter(adaptador)}
-        cargar()
 
     }
 
@@ -33,7 +33,7 @@ class Carrito : AppCompatActivity() {
         for (i in Prendas.prendasSource) {
             if(i.cantidad > 0 && !Prendas.prendasCogidas.contains(Prendas.prendasSource.get(contador))) {
                 var prenda: Prendas=Prendas(i.id, i.nombre, i.numPrenda,i.descripcion, i.imagen, i.precio,i.cantidad, i.talla)
-                //Prendas.prendasCogidas.add(prenda)
+                Prendas.prendasCogidas.add(prenda)
                 prendasAniadidas.add(prenda)
                 contador++
             }
@@ -48,8 +48,25 @@ class Carrito : AppCompatActivity() {
         }
 
         contador=0
+        contador2=0
+        if (Prendas.prendasCogidas.size >0) {
+            if (prendasActualizadas.size >0) {
+                for (a in Prendas.prendasCogidas) {
+                    if (a.id == prendasActualizadas.get(contador2).id && a.cantidad != prendasActualizadas.get(contador2).cantidad) {
+                        a.cantidad = prendasActualizadas.get(contador2).cantidad
 
-        println("Prendas Cogidas: " + Prendas.prendasCogidas)
+                        //Prendas.prendasCogidas.removeAt(contador2)
+                        //Prendas.prendasCogidas.add(contador2, prendasActualizadas.get(contador))
+                        contador++
+                        contador2++
+                    }
+                    contador2++
+                }
+            }
+
+        }
+
+        /*println("Prendas Cogidas: " + Prendas.prendasCogidas)
         println("Prendas Aniadidas: " + prendasAniadidas)
         println("Prendas Actualizadas: " + prendasActualizadas)
         for (i in prendasAniadidas) {
@@ -65,14 +82,14 @@ class Carrito : AppCompatActivity() {
                 prendasActualizadas.removeAt(contador)
                 contador++
             }
-        }
+        }*/
         println("DESPUÉS DE BUCLES")
         println("Prendas Aniadidas: " + prendasAniadidas)
         println("Prendas Actualizadas: " + prendasActualizadas)
 
-        Prendas.prendasCogidas.clear()
+        //Prendas.prendasCogidas.clear()
         println("Prendas Cogidas: " + Prendas.prendasCogidas)
-        Prendas.prendasCogidas.addAll(prendasAniadidas)
+        //Prendas.prendasCogidas.addAll(prendasAniadidas)
         println("Prendas Cogidas: " + Prendas.prendasCogidas)
         //Prendas.prendasCogidas.addAll(prendasActualizadas)
 
