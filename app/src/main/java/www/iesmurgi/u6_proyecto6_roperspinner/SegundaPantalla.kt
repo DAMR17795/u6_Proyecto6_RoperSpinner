@@ -75,14 +75,14 @@ class SegundaPantalla: AppCompatActivity() {
         }
     }
 
-
+    //Metodo actualizarCantidadArray
     private fun actualizarCantidadArray(cantidad:Int){
         val mibundle=intent.extras
         val tamanio = mibundle?.getString("TALLA")
         Prendas.prendasSource.filter { it.id == id.toString().toInt() && it.talla == tamanio.toString()}.forEach { it.cantidad += cantidad}
 
     }
-
+    //MetodoActualizarTallaArray
     private fun actualizarTallaArray(){
         val mibundle=intent.extras
         val tamanio = mibundle?.getString("TALLA")
@@ -91,7 +91,7 @@ class SegundaPantalla: AppCompatActivity() {
         }
     }
 
-
+    //Mostrar los datos al abrir la ventana
     fun mostrar() {
         //Constantes binding-xml
         val nombreAtuendo = binding.nombreAtuendo
@@ -126,24 +126,12 @@ class SegundaPantalla: AppCompatActivity() {
         Prendas.prendasSource.filter { it.id == id.toString().toInt() && it.talla == tamanio.toString()}.forEach { it.cantidad = 0}
         finish()
     }
+
     //Metodo Para Cargar en la Lista
     fun cargar() {
         //Bucle for y añadimos a la lista vacia
         //las prendas que tengan cantidad mayor a 0
         var contador = 0
-        var contador2 = 0
-
-        var prendasActualizadas= mutableListOf<Prendas>()
-        var prendasAniadidas = mutableListOf<Prendas>()
-        println("*********************AL EMPEZAR*******************")
-        println("Prendas dentro array Cogidas: " + Prendas.prendasCogidas.size)
-        for (i in Prendas.prendasCogidas) {
-            println("Prenda en  array cogidas: " + i.descripcion + ", Talla: " + i.talla + ", Cantidad: " + i.cantidad)
-        }
-        println("Prendas dentro array Finales: " + Prendas.prendasFinales.size)
-        for (i in Prendas.prendasFinales) {
-            println("Prenda en  array finales: " + i.descripcion + ", Talla: " + i.talla + ", Cantidad: " + i.cantidad)
-        }
         for (i in Prendas.prendasSource) {
             if(i.cantidad != 0) {
                 var prenda: Prendas=Prendas(i.id, i.nombre, i.numPrenda,i.descripcion, i.imagen, i.precio,i.cantidad, i.talla)
@@ -165,20 +153,8 @@ class SegundaPantalla: AppCompatActivity() {
                 }
                 contador++
             }
+        }
 
-
-        }
-        println("*********************Al ACABAR EL BUCLE*******************")
-        println("Tamaño array cogidas: " + Prendas.prendasCogidas.size)
-        println("Tamaño array Finales: " + Prendas.prendasFinales.size)
-        println("Prendas dentro array Cogidas: " + Prendas.prendasCogidas.size)
-        for (i in Prendas.prendasCogidas) {
-            println("Prenda en  array cogidas: " + i.descripcion + ", Talla: " + i.talla + ", Cantidad: " + i.cantidad + ", Precio: " + i.precio + ", ID: " + i.id)
-        }
-        println("Prendas dentro array Finales: " + Prendas.prendasFinales.size)
-        for (i in Prendas.prendasFinales) {
-            println("Prenda en  array finales: " + i.descripcion + ", Talla: " + i.talla + ", Cantidad: " + i.cantidad + ", Precio: " + i.precio + ", ID: " + i.id)
-        }
         contador =0
 
         for (j in Prendas.prendasCogidas) {
@@ -188,7 +164,6 @@ class SegundaPantalla: AppCompatActivity() {
                 Prendas.prendasCogidas.get(contador).cantidad = Prendas.prendasFinales.get(0).cantidad
                 contador++
             }
-            println("BUCLE PARA ESTABLECER PRECIO ENTRA " + contador)
             contador++
         }
 
@@ -199,27 +174,9 @@ class SegundaPantalla: AppCompatActivity() {
             if (!Prendas.prendasCogidas.contains(Prendas.prendasFinales.get(0))) {
                 Prendas.prendasCogidas.add(Prendas.prendasFinales.get(0))
                 contador++
-                //Prendas.prendasFinales.clear()
             }
-            println("BUCLE PARA AÑADIR ENTRA: " + contador)
             contador++
         }
-
-
-
-        println("************************FIN******************************")
-        println("Prendas dentro array Cogidas: " + Prendas.prendasCogidas.size)
-        for (i in Prendas.prendasCogidas) {
-            println("Prenda en  array cogidas: " + i.descripcion + ", Talla: " + i.talla + ", Cantidad: " + i.cantidad + ", Precio: " + i.precio + ", ID: " + i.id)
-        }
-
-        println("*********************AL BORRAR*******************")
-        //println("Tamaño array Finales: " + Prendas.prendasFinales.size)
-        println("Prendas dentro array Cogidas: " + Prendas.prendasCogidas.size)
-        for (i in Prendas.prendasCogidas) {
-            println("Prenda en  array cogidas: " + i.descripcion + ", Talla: " + i.talla + ", Cantidad: " + i.cantidad + " ,Precio: " + i.precio)
-        }
-
         Prendas.prendasFinales.clear()
 
     }

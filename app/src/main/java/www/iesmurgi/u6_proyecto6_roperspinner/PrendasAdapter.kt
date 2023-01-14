@@ -244,7 +244,7 @@ class PrendasAdapter (context: Context, prendas:List<Prendas>):ArrayAdapter<Pren
             }
 
             //OnLongClickListener
-            /*vista.setOnLongClickListener{
+            vista.setOnLongClickListener{
                 if (armario.descripcion.equals("Camiseta azul")) {
                     Toast.makeText(context, context.resources.getString(R.string.camisetaazul) + " " + context.resources.getString(R.string.oferta), Toast.LENGTH_SHORT).show()
                 }
@@ -252,14 +252,23 @@ class PrendasAdapter (context: Context, prendas:List<Prendas>):ArrayAdapter<Pren
                     Toast.makeText(context, context.resources.getString(R.string.camisetaverde) + " " + context.resources.getString(R.string.oferta), Toast.LENGTH_SHORT).show()
                 }
                 if (armario.descripcion.equals("Camiseta amarilla")) {
-                    descripcion = context.resources.getString(R.string.camisetaamarilla)
+                    Toast.makeText(context, context.resources.getString(R.string.camisetaamarilla) + " " + context.resources.getString(R.string.oferta), Toast.LENGTH_SHORT).show()
                 }
                 if (armario.descripcion.equals("Camiseta rosa")) {
-                    descripcion = context.resources.getString(R.string.camisetarosa)
+                    Toast.makeText(context, context.resources.getString(R.string.camisetarosa) + " " + context.resources.getString(R.string.oferta), Toast.LENGTH_SHORT).show()
                 }
-                Toast.makeText(context, context.resources.getString() + " " + context.resources.getString(R.string.oferta), Toast.LENGTH_SHORT).show()
+                if (armario.descripcion.equals("Gorra marron")) {
+                    Toast.makeText(context, context.resources.getString(R.string.gorramarron) + " " + context.resources.getString(R.string.oferta), Toast.LENGTH_SHORT).show()
+                }
+                if (armario.descripcion.equals("Gorra naranja")) {
+                    Toast.makeText(context, context.resources.getString(R.string.gorranaranja) + " " + context.resources.getString(R.string.oferta), Toast.LENGTH_SHORT).show()
+                }
+                if (armario.descripcion.equals("Gorra roja")) {
+                    Toast.makeText(context, context.resources.getString(R.string.gorraroja) + " " + context.resources.getString(R.string.oferta), Toast.LENGTH_SHORT).show()
+                }
+
                 true
-            }*/
+            }
         }
 
         return vista
