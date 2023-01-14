@@ -156,86 +156,71 @@ class SegundaPantalla: AppCompatActivity() {
                 }  else if (i.talla == "XL") {
                     prenda.precio = prenda.precio + 3
                 }
-                Prendas.prendasCogidas.add(prenda)
-                Prendas.prendasFinales.add(prenda)
-                /*if (Prendas.prendasCogidas.size > 0 && Prendas.prendasCogidas.contains(prenda)) {
-                    Prendas.prendasCogidas.removeAt(contador)
-                }*/
-                /*if (Prendas.prendasCogidas.size > 0 && Prendas.prendasFinales.size > 0) {
-                    for (c in Prendas.prendasCogidas) {
-                        if (!Prendas.prendasFinales.contains(c)) {
-                            Prendas.prendasFinales.add(c)
-                            }
-                    }
 
-                }*/
-                //prendasAniadidas.add(Prendas.prendasCogidas.get(contador))
-                //prendasAniadidas.add(prenda)
+                if (Prendas.prendasCogidas.size > 0) {
+                    Prendas.prendasFinales.add(prenda)
+                } else if (Prendas.prendasCogidas.size == 0) {
+                    Prendas.prendasCogidas.add(prenda)
+                    Prendas.prendasFinales.add(prenda)
+                }
                 contador++
             }
 
-            for (j in Prendas.prendasFinales) {
-                if (i.id == j.id && i.cantidad != j.cantidad && i.talla == j.talla) {
-                    println("*********************Dentro de IF*******************")
-                    println("Tamaño array cogidas: " + Prendas.prendasCogidas.size)
-                    println("Tamaño array finales: " + Prendas.prendasFinales.size)
-                    //prendasActualizadas.add(Prendas.prendasCogidas.get(contador2))
-                    //prendasActualizadas.add(i)
-                    //Prendas.prendasCogidas.get(contador2).cantidad = i.cantidad
 
-                    //prendasAniadidas.removeAt(contador2)
-                    //Prendas.prendasCogidas.removeAt(contador2)
-                    Prendas.prendasFinales.removeAt(contador2)
-                    contador2++
-                }/* else if (i.id == j.id && i.cantidad == j.cantidad && i.talla == j.talla) {
-                    prendasActualizadas.add(i)
-                    contador2++
-                }  else if (i.id == j.id && i.cantidad == j.cantidad && i.talla == j.talla) {
-                    //prendasActualizadas.add(i)
-                    contador2++
-                }*/
-                contador2++
-            }
-            contador2=0
         }
         println("*********************Al ACABAR EL BUCLE*******************")
         println("Tamaño array cogidas: " + Prendas.prendasCogidas.size)
         println("Tamaño array Finales: " + Prendas.prendasFinales.size)
+        println("Prendas dentro array Cogidas: " + Prendas.prendasCogidas.size)
+        for (i in Prendas.prendasCogidas) {
+            println("Prenda en  array cogidas: " + i.descripcion + ", Talla: " + i.talla + ", Cantidad: " + i.cantidad + ", Precio: " + i.precio + ", ID: " + i.id)
+        }
+        println("Prendas dentro array Finales: " + Prendas.prendasFinales.size)
+        for (i in Prendas.prendasFinales) {
+            println("Prenda en  array finales: " + i.descripcion + ", Talla: " + i.talla + ", Cantidad: " + i.cantidad + ", Precio: " + i.precio + ", ID: " + i.id)
+        }
+        contador =0
 
-        contador=0
-
-
-        /*for (i in prendasAniadidas) {
-            if (prendasActualizadas.contains(prendasAniadidas.get(contador))) {
-                prendasAniadidas.removeAt(contador)
+        for (j in Prendas.prendasCogidas) {
+            if (Prendas.prendasCogidas.get(contador).id == Prendas.prendasFinales.get(0).id &&
+                    Prendas.prendasCogidas.get(contador).talla == Prendas.prendasFinales.get(0).talla &&
+                    Prendas.prendasCogidas.get(contador).cantidad != Prendas.prendasFinales.get(0).cantidad) {
+                Prendas.prendasCogidas.get(contador).cantidad = Prendas.prendasFinales.get(0).cantidad
                 contador++
             }
-        }*/
+            println("BUCLE PARA ESTABLECER PRECIO ENTRA " + contador)
+            contador++
+        }
+
+        contador =0
+        var tamanio = Prendas.prendasCogidas.size
+
+        for (j in 0 .. tamanio) {
+            if (!Prendas.prendasCogidas.contains(Prendas.prendasFinales.get(0))) {
+                Prendas.prendasCogidas.add(Prendas.prendasFinales.get(0))
+                contador++
+                //Prendas.prendasFinales.clear()
+            }
+            println("BUCLE PARA AÑADIR ENTRA: " + contador)
+            contador++
+        }
+
+
 
         println("************************FIN******************************")
         println("Prendas dentro array Cogidas: " + Prendas.prendasCogidas.size)
         for (i in Prendas.prendasCogidas) {
+            println("Prenda en  array cogidas: " + i.descripcion + ", Talla: " + i.talla + ", Cantidad: " + i.cantidad + ", Precio: " + i.precio + ", ID: " + i.id)
+        }
+
+        println("*********************AL BORRAR*******************")
+        //println("Tamaño array Finales: " + Prendas.prendasFinales.size)
+        println("Prendas dentro array Cogidas: " + Prendas.prendasCogidas.size)
+        for (i in Prendas.prendasCogidas) {
             println("Prenda en  array cogidas: " + i.descripcion + ", Talla: " + i.talla + ", Cantidad: " + i.cantidad + " ,Precio: " + i.precio)
         }
-        println("Prendas dentro array Finales: " + Prendas.prendasFinales.size)
-        for (i in Prendas.prendasFinales) {
-            println("Prenda en  array finales: " + i.descripcion + ", Talla: " + i.talla + ", Cantidad: " + i.cantidad + " ,Precio: " + i.precio)
-        }
 
-        Prendas.prendasCogidas.clear()
-        //Prendas.prendasCogidas.addAll(prendasAniadidas)
-        Prendas.prendasCogidas.addAll(Prendas.prendasFinales)
         Prendas.prendasFinales.clear()
-
-
-        //prendasAniadidas.clear()
-        println("*********************AL BORRAR*******************")
-        println("Tamaño array cogidas: " + Prendas.prendasCogidas.size)
-        println("Tamaño array Finales: " + Prendas.prendasFinales.size)
-
-
-        //prendasActualizadas.clear()
-        //prendasAniadidas.clear()
 
     }
 
