@@ -65,32 +65,9 @@ class SegundaPantalla: AppCompatActivity() {
         //Metodo para añadir a la cesta
         btCompra.setOnClickListener {
             actualizarTallaArray()
-            //Nuevo
-            //Recogida del intent
-            /*val mibundle=intent.extras
-            val nombre = mibundle?.getString("NOMBRE")
-            val imagen = mibundle?.getInt("IMAGEN")
-            val descripcion = mibundle?.getString("DESCRIPCION")
-            val talla = mibundle?.getString("TALLA")
-            val precio = mibundle?.getDouble("PRECIO")
-            id = mibundle?.getInt("ID").toString()
-            var tamanio = Prendas.prendasCogidas.size
-            var contador =0
-            if (Prendas.prendasCogidas.size>0) {
-                for (i in 0..tamanio) {
-                    if (Prendas.prendasCogidas.get(contador).id == mibundle?.getInt("ID") &&
-                            Prendas.prendasCogidas.get(contador).talla == talla &&
-                            Prendas.prendasCogidas.get(contador).cantidad != ) {
-                        contador++
-                    }
-                    contador++
-                }
-            }*/
-
             actualizarCantidadArray(cantidadCarrito.text.toString().toInt())
             cargar()
             Toast.makeText(this, getString(R.string.aniadido), Toast.LENGTH_SHORT).show()
-            //Prendas.prendasCogidas.clear()
             println("*******************ARRAY PRENDAS SOURCE*********************")
             for (i in Prendas.prendasSource){
                 println("ID: " + i.id + ", Cantidad: " + i.cantidad + ", Talla:" + i.talla)
@@ -141,7 +118,7 @@ class SegundaPantalla: AppCompatActivity() {
         precioPrenda.setText(getString(R.string.precio) + " " + precio.toString() + " €")
         cantidad.setText("1")
     }
-
+    //OnbackPressed
     override fun onBackPressed() {
         super.onBackPressed()
         val mibundle=intent.extras
@@ -149,7 +126,7 @@ class SegundaPantalla: AppCompatActivity() {
         Prendas.prendasSource.filter { it.id == id.toString().toInt() && it.talla == tamanio.toString()}.forEach { it.cantidad = 0}
         finish()
     }
-
+    //Metodo Para Cargar en la Lista
     fun cargar() {
         //Bucle for y añadimos a la lista vacia
         //las prendas que tengan cantidad mayor a 0

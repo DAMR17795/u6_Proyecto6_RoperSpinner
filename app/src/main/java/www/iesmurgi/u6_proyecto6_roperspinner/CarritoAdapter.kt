@@ -62,10 +62,9 @@ class CarritoAdapter (context: Context, prendas:List<Prendas>):ArrayAdapter<Pren
             btCerrar.setOnClickListener {
                 Prendas.prendasSource.filter { it.id == armario.id}.forEach { it.cantidad = 0}
                 Prendas.prendasCogidas.removeAt(position)
-                //No Borrar importante
-                //Prendas.prendasCogidas.clear()
+
                 if (Prendas.prendasCogidas.size > 0) {
-                    //Prendas.prendasCogidas.clear()
+
                     val enviar = Intent (context, Carrito::class.java)
                     context.startActivity(enviar)
                     (context as Activity).finish()
@@ -82,12 +81,11 @@ class CarritoAdapter (context: Context, prendas:List<Prendas>):ArrayAdapter<Pren
             var precio =0.0
             var precioMostrar = armario.precio * vista.findViewById<TextView>(R.id.lblCantidad).getText().toString().toInt()
             var contador= vista.findViewById<TextView>(R.id.lblCantidad).getText().toString().toInt()
-
+            //Metodo para boton aumentar cantidad
             btMas.setOnClickListener{
                 precio=0.0
                 for (i in Prendas.prendasCogidas) {
                     precio += i.cantidad * i.precio
-                    println("Precio Final: " + precio)
                 }
                 if (vista.findViewById<TextView>(R.id.lblCantidad) != null) {
                     contador +=1
@@ -102,11 +100,11 @@ class CarritoAdapter (context: Context, prendas:List<Prendas>):ArrayAdapter<Pren
                 }
             }
 
+            //Metodo para boton disminuir cantidad
             btMenos.setOnClickListener{
                 precio=0.0
                 for (i in Prendas.prendasCogidas) {
                     precio += i.cantidad * i.precio
-                    println("Precio Final: " + precio)
                 }
                 if (vista.findViewById<TextView>(R.id.lblCantidad) != null) {
                     if (contador > 1) {
