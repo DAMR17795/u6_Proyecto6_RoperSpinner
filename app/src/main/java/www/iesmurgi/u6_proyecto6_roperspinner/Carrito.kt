@@ -21,17 +21,6 @@ class Carrito : AppCompatActivity() {
         //cargar()
         var precioF =0.0
         for (i in Prendas.prendasCogidas) {
-            /*if (i.talla == "XS") {
-                precioF += (i.cantidad * (i.precio-1))
-            } else if (i.talla == "S") {
-                precioF += (i.cantidad * i.precio)
-            } else if (i.talla == "M") {
-                precioF += (i.cantidad * (i.precio+1))
-            } else if (i.talla == "L") {
-                precioF += (i.cantidad * (i.precio+2))
-            } else if (i.talla == "XL") {
-                precioF += (i.cantidad * (i.precio+3))
-            }*/
             precioF += (i.cantidad * i.precio)
         }
         resultado.setText(getString(R.string.precioTotal) + " "+ precioF.toFloat().toString() + " €")

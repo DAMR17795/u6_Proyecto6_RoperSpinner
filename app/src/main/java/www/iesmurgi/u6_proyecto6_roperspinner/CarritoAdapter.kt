@@ -18,7 +18,7 @@ class CarritoAdapter (context: Context, prendas:List<Prendas>):ArrayAdapter<Pren
         val vista = convertView?: LayoutInflater.from(context).inflate(R.layout.esqueleto_carrito, parent, false)
         getItem(position)?.let { armario ->
             vista.findViewById<TextView>(R.id.nombrePrenda).apply {
-                text= armario.nombre + armario.numPrenda
+                text= armario.nombre
                 if (text.equals("Camiseta")) {
                     text = context.resources.getString(R.string.camiseta) + armario.numPrenda
                 }

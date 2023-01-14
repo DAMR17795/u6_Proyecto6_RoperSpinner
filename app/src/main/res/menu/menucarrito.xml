@@ -8,6 +8,6 @@
     </item>
     <item
         android:id="@+id/MnOp1"
-        android:title="Acerca de"
+        android:title="@string/acerca"
         ></item>
 </menu>

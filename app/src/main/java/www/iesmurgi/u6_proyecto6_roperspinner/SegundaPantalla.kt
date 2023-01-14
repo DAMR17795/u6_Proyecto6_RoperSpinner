@@ -65,6 +65,28 @@ class SegundaPantalla: AppCompatActivity() {
         //Metodo para añadir a la cesta
         btCompra.setOnClickListener {
             actualizarTallaArray()
+            //Nuevo
+            //Recogida del intent
+            /*val mibundle=intent.extras
+            val nombre = mibundle?.getString("NOMBRE")
+            val imagen = mibundle?.getInt("IMAGEN")
+            val descripcion = mibundle?.getString("DESCRIPCION")
+            val talla = mibundle?.getString("TALLA")
+            val precio = mibundle?.getDouble("PRECIO")
+            id = mibundle?.getInt("ID").toString()
+            var tamanio = Prendas.prendasCogidas.size
+            var contador =0
+            if (Prendas.prendasCogidas.size>0) {
+                for (i in 0..tamanio) {
+                    if (Prendas.prendasCogidas.get(contador).id == mibundle?.getInt("ID") &&
+                            Prendas.prendasCogidas.get(contador).talla == talla &&
+                            Prendas.prendasCogidas.get(contador).cantidad != ) {
+                        contador++
+                    }
+                    contador++
+                }
+            }*/
+
             actualizarCantidadArray(cantidadCarrito.text.toString().toInt())
             cargar()
             Toast.makeText(this, getString(R.string.aniadido), Toast.LENGTH_SHORT).show()
@@ -81,6 +103,7 @@ class SegundaPantalla: AppCompatActivity() {
         val mibundle=intent.extras
         val tamanio = mibundle?.getString("TALLA")
         Prendas.prendasSource.filter { it.id == id.toString().toInt() && it.talla == tamanio.toString()}.forEach { it.cantidad += cantidad}
+
     }
 
     private fun actualizarTallaArray(){
