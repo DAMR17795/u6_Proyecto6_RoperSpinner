@@ -10,6 +10,7 @@
     <string name="legging">Legging</string>
     <!--Herramientas-->
     <string name="seleccionTam">Selecciona un tamaño</string>
+    <string name="acerca">Acerca de</string>
     <string name="precio">Precio:</string>
     <string name="precioTotal">Precio Total:</string>
     <string name="descripcion">Descripcion: </string>

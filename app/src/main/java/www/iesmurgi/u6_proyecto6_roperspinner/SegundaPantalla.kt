@@ -1,6 +1,10 @@
 package www.iesmurgi.u6_proyecto6_roperspinner
 
+import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
@@ -105,7 +109,6 @@ class SegundaPantalla: AppCompatActivity() {
         val tamanio = mibundle?.getString("TALLA")
         val precio = mibundle?.getDouble("PRECIO")
         id = mibundle?.getInt("ID").toString()
-        //quantity = mibundle?.getInt("CANTIDAD")
 
         //Establecemos los valores en el xml
         nombreAtuendo.setText(nombre)
@@ -158,14 +161,14 @@ class SegundaPantalla: AppCompatActivity() {
                 /*if (Prendas.prendasCogidas.size > 0 && Prendas.prendasCogidas.contains(prenda)) {
                     Prendas.prendasCogidas.removeAt(contador)
                 }*/
-                if (Prendas.prendasCogidas.size > 0 && Prendas.prendasFinales.size > 0) {
+                /*if (Prendas.prendasCogidas.size > 0 && Prendas.prendasFinales.size > 0) {
                     for (c in Prendas.prendasCogidas) {
                         if (!Prendas.prendasFinales.contains(c)) {
                             Prendas.prendasFinales.add(c)
                             }
                     }
 
-                }
+                }*/
                 //prendasAniadidas.add(Prendas.prendasCogidas.get(contador))
                 //prendasAniadidas.add(prenda)
                 contador++
@@ -234,6 +237,39 @@ class SegundaPantalla: AppCompatActivity() {
         //prendasActualizadas.clear()
         //prendasAniadidas.clear()
 
+    }
+
+    //Options menu
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        val inflater: MenuInflater = menuInflater
+        inflater.inflate(R.menu.menucarrito, menu)
+        return true
+    }
+
+    //Options item
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.Op -> {
+                var variable=0
+                for (i in Prendas.prendasCogidas) {
+                    if (i.cantidad != 0) {
+                        variable++
+                    }
+                }
+                if (variable != 0) {
+                    val enviar = Intent (this, Carrito::class.java)
+                    startActivity(enviar)
+                } else {
+                    Toast.makeText(this, getString(R.string.carrito), Toast.LENGTH_SHORT).show()
+                }
+                true
+            }
+            R.id.MnOp1 -> {
+                Toast.makeText(this, getString(R.string.creacion), Toast.LENGTH_SHORT).show()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 
 

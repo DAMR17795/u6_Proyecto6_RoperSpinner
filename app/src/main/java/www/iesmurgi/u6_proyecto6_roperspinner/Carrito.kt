@@ -34,7 +34,7 @@ class Carrito : AppCompatActivity() {
             }*/
             precioF += (i.cantidad * i.precio)
         }
-        resultado.setText(getString(R.string.precio) + " "+ precioF.toFloat().toString() + " €")
+        resultado.setText(getString(R.string.precioTotal) + " "+ precioF.toFloat().toString() + " €")
         CarritoAdapter(this, Prendas.prendasCogidas).also {
                 adaptador -> lista.setAdapter(adaptador)}
 

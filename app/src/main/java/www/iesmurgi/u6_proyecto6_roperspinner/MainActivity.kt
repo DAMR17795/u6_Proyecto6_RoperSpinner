@@ -57,7 +57,7 @@ class MainActivity : AppCompatActivity() {
                 true
             }
             R.id.MnOp1 -> {
-                Toast.makeText(this, "Aplicación Creada Por Daniel 2ºDAM", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.creacion), Toast.LENGTH_SHORT).show()
                 true
             }
             else -> super.onOptionsItemSelected(item)

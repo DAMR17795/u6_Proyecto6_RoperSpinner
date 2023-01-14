@@ -22,27 +22,21 @@ class CarritoAdapter (context: Context, prendas:List<Prendas>):ArrayAdapter<Pren
                 if (text.equals("Camiseta")) {
                     text = context.resources.getString(R.string.camiseta) + armario.numPrenda
                 }
-
                 if (text.equals("Gorra")) {
                     text = context.resources.getString(R.string.gorra) + armario.numPrenda
                 }
-
                 if (text.equals("Sudadera")) {
                     text = context.resources.getString(R.string.sudadera) + armario.numPrenda
                 }
-
                 if (text.equals("Pantalon")) {
                     text = context.resources.getString(R.string.pantalon) + armario.numPrenda
                 }
-
                 if (text.equals("Calcetin")) {
                     text = context.resources.getString(R.string.calcetin) + armario.numPrenda
                 }
-
                 if (text.equals("Vestido")) {
                     text = context.resources.getString(R.string.vestido) + armario.numPrenda
                 }
-
                 if (text.equals("Legging")) {
                     text = context.resources.getString(R.string.legging) + armario.numPrenda
                 }
