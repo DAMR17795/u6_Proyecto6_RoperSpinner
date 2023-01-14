@@ -7,10 +7,20 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/tienda"
+        android:textAlignment="center"
+        android:textColor="#050505"
+        android:textSize="34sp"
+        android:textStyle="bold" />
+
     <ListView
         android:id="@+id/miLista"
         android:layout_width="match_parent"
-        android:layout_height="560dp"
+        android:layout_height="match_parent"
         android:choiceMode="none"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -22,14 +32,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/btVerCarrito"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="VER CARRITO" />
-    </LinearLayout>
+        android:orientation="horizontal"/>
 
 </LinearLayout>

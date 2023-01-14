@@ -54,7 +54,12 @@ class PrendasAdapter (context: Context, prendas:List<Prendas>):ArrayAdapter<Pren
 
             //Spinner
             val spinner = vista.findViewById<Spinner>(R.id.spinnerTalla)
-            val tallas = arrayOf(context.resources.getString(R.string.seleccionTam), "S: " + "" + armario.precio + " €", "M: " + armario.precio + " €", "L: " + armario.precio + " €")
+            val tallas = arrayOf(context.resources.getString(R.string.seleccionTam),
+                "XS: " + "" + (armario.precio-1) + " €",
+                "S: " + "" + armario.precio + " €",
+                "M: " + (armario.precio + 1) + " €",
+                "L: " + (armario.precio + 2) + " €",
+                "XL: " + (armario.precio + 3) + " €")
 
             val adapter: ArrayAdapter<String> = ArrayAdapter<String> (
                 context, android.R.layout.simple_spinner_item, tallas
@@ -70,10 +75,14 @@ class PrendasAdapter (context: Context, prendas:List<Prendas>):ArrayAdapter<Pren
                     val spinner = vista.findViewById<Spinner>(R.id.spinnerTalla)
                     if (spinner.selectedItem.toString().equals("S: " + "" + armario.precio + " €")) {
                         txtPrecio.setText(context.resources.getString(R.string.precio) + " " + armario.precio + " €")
-                    } else if (spinner.selectedItem.toString().equals("M: " + "" + armario.precio + " €")) {
-                        txtPrecio.setText(context.resources.getString(R.string.precio) + " " + armario.precio + " €")
-                    } else if (spinner.selectedItem.toString().equals("L: " + "" + armario.precio + " €")) {
-                        txtPrecio.setText(context.resources.getString(R.string.precio) + " " + armario.precio + " €")
+                    } else if (spinner.selectedItem.toString().equals("M: " + "" + (armario.precio + 1.00) + " €")) {
+                        txtPrecio.setText(context.resources.getString(R.string.precio) + " " + (armario.precio + 1.00) + " €")
+                    } else if (spinner.selectedItem.toString().equals("L: " + "" + (armario.precio + 2.00) + " €")) {
+                        txtPrecio.setText(context.resources.getString(R.string.precio) + " " + (armario.precio + 2.00) + " €")
+                    } else if (spinner.selectedItem.toString().equals("XL: " + "" + (armario.precio + 3.00) + " €")) {
+                        txtPrecio.setText(context.resources.getString(R.string.precio) + " " + (armario.precio + 3.00) + " €")
+                    } else if (spinner.selectedItem.toString().equals("XS: " + "" + (armario.precio - 1.00) + " €")) {
+                        txtPrecio.setText(context.resources.getString(R.string.precio) + " " + (armario.precio - 1.00) + " €")
                     } else {
                         txtPrecio.setText("")
                     }
@@ -200,21 +209,33 @@ class PrendasAdapter (context: Context, prendas:List<Prendas>):ArrayAdapter<Pren
                     enviar.putExtra("NOMBRE", nombrePrenda)
                     enviar.putExtra("DESCRIPCION", descripcion)
                     enviar.putExtra("IMAGEN", imagen)
-                    enviar.putExtra("PRECIO", precio)
+                    //enviar.putExtra("PRECIO", precio)
                     enviar.putExtra("ID", armario.id)
                     enviar.putExtra("CANTIDAD", armario.cantidad)
 
 
-                    if (texto.equals("L: " + "" + precio + " €")) {
+                    if (texto.equals("L: " + "" + (precio + 2) + " €")) {
                         enviar.putExtra("TALLA", "L")
+                        enviar.putExtra("PRECIO", precio+2)
                     }
 
-                    if (texto.equals("M: " + "" + precio + " €")) {
+                    if (texto.equals("M: " + "" + (precio + 1) + " €")) {
                         enviar.putExtra("TALLA", "M")
+                        enviar.putExtra("PRECIO", precio+1)
                     }
 
                     if (texto.equals("S: " + "" + precio + " €")) {
                         enviar.putExtra("TALLA", "S")
+                        enviar.putExtra("PRECIO", precio)
+                    }
+
+                    if (texto.equals("XS: " + "" + (precio-1) + " €")) {
+                        enviar.putExtra("TALLA", "XS")
+                        enviar.putExtra("PRECIO", precio-1)
+                    }
+                    if (texto.equals("XL: " + "" + (precio+3) + " €")) {
+                        enviar.putExtra("TALLA", "XL")
+                        enviar.putExtra("PRECIO", precio+3)
                     }
 
                     //Comienza la actividad

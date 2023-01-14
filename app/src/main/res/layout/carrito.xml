@@ -7,10 +7,20 @@
     android:orientation="vertical"
     tools:context=".Carrito">
 
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/carritoLogo"
+        android:textAlignment="center"
+        android:textColor="#050505"
+        android:textSize="34sp"
+        android:textStyle="bold" />
+
     <ListView
         android:id="@+id/miListaCarrito"
         android:layout_width="match_parent"
-        android:layout_height="640dp"
+        android:layout_height="585dp"
         android:choiceMode="none"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -22,7 +32,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAlignment="center"
-        android:textColor="#020202"
+        android:textColor="#FF0000"
         android:textSize="20sp"
         android:textStyle="bold" />
 

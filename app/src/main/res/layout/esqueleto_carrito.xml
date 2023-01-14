@@ -5,13 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="20dp">
+    >
 
-    <LinearLayout
-        android:layout_width="wrap_content"
+    <FrameLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:layout_marginLeft="130dp">
+        >
 
         <TextView
             android:id="@+id/nombrePrenda"
@@ -19,9 +18,20 @@
             android:layout_height="wrap_content"
             android:text="Prenda Ejemplo"
             android:textColor="#000000"
-            android:textSize="20sp"
+            android:textSize="24sp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="@dimen/cardview_default_radius"
+            android:textAlignment="center"
             android:textStyle="bold"></TextView>
-    </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/btEliminar"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="right"
+            android:background="#FFFFFF"
+            android:src="@android:drawable/ic_delete" />
+    </FrameLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -33,7 +43,7 @@
             android:id="@+id/imagenPrenda"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:padding="10dp"
+
             android:src="@drawable/calcetin"></ImageView>
 
         <LinearLayout
@@ -56,7 +66,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="CANTIDAD"
+                android:text="100"
                 android:textAlignment="center"
                 android:textColor="#000000"
                 android:textSize="20sp"
@@ -79,6 +89,17 @@
         android:orientation="horizontal">
 
         <TextView
+            android:id="@+id/tallaPrenda"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="TextView"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
             android:id="@+id/precioPrenda"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -89,12 +110,5 @@
             android:textSize="20sp"
             android:textStyle="bold" />
     </LinearLayout>
-
-    <Button
-        android:id="@+id/btEliminar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="CERRAR"
-        android:textColor="#FFFFFF" />
 
 </LinearLayout>

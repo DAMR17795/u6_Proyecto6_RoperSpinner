@@ -11,10 +11,17 @@
     <!--Herramientas-->
     <string name="seleccionTam">Selecciona un tamaño</string>
     <string name="precio">Precio:</string>
+    <string name="precioTotal">Precio Total:</string>
     <string name="descripcion">Descripcion: </string>
     <string name="talla">Talla: </string>
     <string name="seleccion">Debe seleccionar un tamaño para continuar</string>
     <string name="oferta">en oferta</string>
+    <string name="carrito">Carrito Vacio</string>
+    <string name="aniadir">AÑADIR AL CARRITO</string>
+    <string name="aniadido">Producto añadido</string>
+    <string name="creacion">Aplicación Creada Por Daniel 2ºDAM</string>
+    <string name="tienda">TIENDA MURGI</string>
+    <string name="carritoLogo">CARRITO</string>
     <!--Descripciones-->
     <string name="gorramarron">Gorra marron</string>
     <string name="gorranaranja">Gorra naranja</string>

@@ -2,7 +2,14 @@
 <resources>
     <string name="app_name">u6_proyecto6_roperospinner</string>
     <string name="gorra">Cap</string>
+    <string name="creacion">App by Daniel 2ºDAM</string>
+    <string name="aniadido">Added Product</string>
+    <string name="carrito">Empty Cart</string>
+    <string name="tienda">MURGI SHOP</string>
+    <string name="carritoLogo">CART</string>
+    <string name="aniadir">ADD TO CART</string>
     <string name="camiseta">T-shirt</string>
+    <string name="precioTotal">Full Price:</string>
     <string name="sudadera">Hoodie</string>
     <string name="pantalon">Pants</string>
     <string name="calcetin">Socks</string>

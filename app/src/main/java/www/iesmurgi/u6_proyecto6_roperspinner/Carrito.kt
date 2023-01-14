@@ -18,10 +18,20 @@ class Carrito : AppCompatActivity() {
         setContentView(binding.root)
         lista = binding.miListaCarrito
         resultado = binding.precioFinal
-        cargar()
-        mostrarArrray()
+        //cargar()
         var precioF =0.0
         for (i in Prendas.prendasCogidas) {
+            /*if (i.talla == "XS") {
+                precioF += (i.cantidad * (i.precio-1))
+            } else if (i.talla == "S") {
+                precioF += (i.cantidad * i.precio)
+            } else if (i.talla == "M") {
+                precioF += (i.cantidad * (i.precio+1))
+            } else if (i.talla == "L") {
+                precioF += (i.cantidad * (i.precio+2))
+            } else if (i.talla == "XL") {
+                precioF += (i.cantidad * (i.precio+3))
+            }*/
             precioF += (i.cantidad * i.precio)
         }
         resultado.setText(getString(R.string.precio) + " "+ precioF.toFloat().toString() + " €")
@@ -30,68 +40,9 @@ class Carrito : AppCompatActivity() {
 
     }
 
-    fun cargar() {
-        //Bucle for y añadimos a la lista vacia
-        //las prendas que tengan cantidad mayor a 0
-        var contador = 0
-        var contador2 = 0
-
-        var prendasActualizadas= mutableListOf<Prendas>()
-        var prendasAniadidas = mutableListOf<Prendas>()
-        var prendasFinales = mutableListOf<Prendas>()
-
-
-        for (i in Prendas.prendasSource) {
-            if(i.cantidad > 0 && !Prendas.prendasCogidas.contains(Prendas.prendasSource.get(contador))) {
-                var prenda: Prendas=Prendas(i.id, i.nombre, i.numPrenda,i.descripcion, i.imagen, i.precio,i.cantidad, i.talla)
-                Prendas.prendasCogidas.add(prenda)
-                prendasAniadidas.add(prenda)
-                contador++
-            }
-            for (j in Prendas.prendasCogidas) {
-                if (i.id == j.id && i.cantidad != j.cantidad) {
-                    //prendasActualizadas.add(Prendas.prendasCogidas.get(contador2))
-                    prendasActualizadas.add(i)
-                    contador2++
-                }
-                contador2++
-            }
-            contador2=0
-        }
-
-        contador=0
-
-        for (i in prendasAniadidas) {
-            if (prendasActualizadas.contains(prendasAniadidas.get(contador))) {
-                prendasAniadidas.removeAt(contador)
-                contador++
-            }
-        }
-
-        println("************************FIN******************************")
-        for (i in Prendas.prendasCogidas) {
-            println("Prendas dentro de array: " + i.descripcion)
-            println("Cantidad: " + i.cantidad)
-        }
-        Prendas.prendasCogidas.clear()
-        Prendas.prendasCogidas.addAll(prendasAniadidas)
-
-        //prendasActualizadas.clear()
-        //prendasAniadidas.clear()
-
-    }
-
     override fun onBackPressed() {
         super.onBackPressed()
-        Prendas.prendasCogidas.clear()
         finish()
     }
 
-    fun mostrarArrray() {
-        for (i in Prendas.prendasCogidas) {
-            println("^^^^^^^^^^^^^METODO A FUERA^^^^^^^^^^^^^^^^^^")
-            println("Prendas dentro de array: " + i.descripcion)
-            println("Cantidad: " + i.cantidad)
-        }
-    }
 }

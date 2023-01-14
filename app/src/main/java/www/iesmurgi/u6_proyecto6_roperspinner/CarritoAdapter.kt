@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 
@@ -17,10 +18,38 @@ class CarritoAdapter (context: Context, prendas:List<Prendas>):ArrayAdapter<Pren
         val vista = convertView?: LayoutInflater.from(context).inflate(R.layout.esqueleto_carrito, parent, false)
         getItem(position)?.let { armario ->
             vista.findViewById<TextView>(R.id.nombrePrenda).apply {
-                text= armario.nombre + armario.numPrenda}
+                text= armario.nombre + armario.numPrenda
+                if (text.equals("Camiseta")) {
+                    text = context.resources.getString(R.string.camiseta) + armario.numPrenda
+                }
+
+                if (text.equals("Gorra")) {
+                    text = context.resources.getString(R.string.gorra) + armario.numPrenda
+                }
+
+                if (text.equals("Sudadera")) {
+                    text = context.resources.getString(R.string.sudadera) + armario.numPrenda
+                }
+
+                if (text.equals("Pantalon")) {
+                    text = context.resources.getString(R.string.pantalon) + armario.numPrenda
+                }
+
+                if (text.equals("Calcetin")) {
+                    text = context.resources.getString(R.string.calcetin) + armario.numPrenda
+                }
+
+                if (text.equals("Vestido")) {
+                    text = context.resources.getString(R.string.vestido) + armario.numPrenda
+                }
+
+                if (text.equals("Legging")) {
+                    text = context.resources.getString(R.string.legging) + armario.numPrenda
+                }
+            }
 
             vista.findViewById<TextView>(R.id.precioPrenda).apply {
-                text= context.resources.getString(R.string.precio) + " " + armario.precio.toString() + " €"
+                text= context.resources.getString(R.string.precio) + " " + (armario.precio * armario.cantidad).toString() + " €"
             }
 
             vista.findViewById<TextView>(R.id.lblCantidad).apply {
@@ -31,14 +60,18 @@ class CarritoAdapter (context: Context, prendas:List<Prendas>):ArrayAdapter<Pren
                 setImageResource(armario.imagen)
             }
 
-            var btCerrar:Button = vista.findViewById<Button>(R.id.btEliminar)
+            vista.findViewById<TextView>(R.id.tallaPrenda).apply {
+                text=context.resources.getString(R.string.talla) + " " + armario.talla.toString()
+            }
+
+            var btCerrar:ImageButton = vista.findViewById<ImageButton>(R.id.btEliminar)
             btCerrar.setOnClickListener {
                 Prendas.prendasSource.filter { it.id == armario.id}.forEach { it.cantidad = 0}
                 Prendas.prendasCogidas.removeAt(position)
                 //No Borrar importante
                 //Prendas.prendasCogidas.clear()
                 if (Prendas.prendasCogidas.size > 0) {
-                    Prendas.prendasCogidas.clear()
+                    //Prendas.prendasCogidas.clear()
                     val enviar = Intent (context, Carrito::class.java)
                     context.startActivity(enviar)
                     (context as Activity).finish()
@@ -55,6 +88,7 @@ class CarritoAdapter (context: Context, prendas:List<Prendas>):ArrayAdapter<Pren
             var precio =0.0
             var precioMostrar = armario.precio * vista.findViewById<TextView>(R.id.lblCantidad).getText().toString().toInt()
             var contador= vista.findViewById<TextView>(R.id.lblCantidad).getText().toString().toInt()
+
             btMas.setOnClickListener{
                 precio=0.0
                 for (i in Prendas.prendasCogidas) {
@@ -66,19 +100,12 @@ class CarritoAdapter (context: Context, prendas:List<Prendas>):ArrayAdapter<Pren
                     vista.findViewById<TextView>(R.id.lblCantidad).setText(contador.toString())
                     var precio = armario.precio * contador
                     vista.findViewById<TextView>(R.id.precioPrenda).setText(context.resources.getString(R.string.precio) + " " + precio.toFloat().toString() + " €")
-                    Prendas.prendasSource.filter { it.id == armario.id.toString().toInt()}.forEach { it.cantidad = contador}
+                    //Prendas.prendasSource.filter { it.id == armario.id.toString().toInt()}.forEach { it.cantidad = contador}
+                    Prendas.prendasCogidas.filter {it.id == armario.id.toString().toInt() && it.talla == armario.talla}.forEach {it.cantidad = contador}
                     val enviar = Intent (context, Carrito::class.java)
                     context.startActivity(enviar)
-                    //Importante
-                    Prendas.prendasCogidas.clear()
                     (context as Activity).finish()
                 }
-
-
-                println("Resultado: " + precio)
-                /*vista.findViewById<TextView>(R.id.precioFinal).apply {
-                    text= precio.toString() + ""
-                }*/
             }
 
             btMenos.setOnClickListener{
@@ -93,21 +120,17 @@ class CarritoAdapter (context: Context, prendas:List<Prendas>):ArrayAdapter<Pren
                         vista.findViewById<TextView>(R.id.lblCantidad).setText(contador.toString())
                         var precio = armario.precio * contador
                         vista.findViewById<TextView>(R.id.precioPrenda).setText(context.resources.getString(R.string.precio) + " " + precio.toFloat().toString() + " €")
-                        Prendas.prendasSource.filter { it.id == armario.id.toString().toInt()}.forEach { it.cantidad = contador}
+                        Prendas.prendasCogidas.filter {it.id == armario.id.toString().toInt() && it.talla == armario.talla}.forEach {it.cantidad = contador}
+                        //Prendas.prendasSource.filter { it.id == armario.id.toString().toInt()}.forEach { it.cantidad = contador}
                         val enviar = Intent (context, Carrito::class.java)
                         context.startActivity(enviar)
                         //Importante
-                        Prendas.prendasCogidas.clear()
+                        //Prendas.prendasCogidas.clear()
                         (context as Activity).finish()
                     }
                 }
-                println("Resultado: " + precio)
-                /*vista.findViewById<TextView>(R.id.precioFinal).apply {
-                    text= precio.toString() + ""
-                }*/
             }
 
-            vista.findViewById<TextView>(R.id.precioPrenda).setText(context.resources.getString(R.string.precio) + " " + precioMostrar.toFloat().toString() + " €")
 
         }
         return vista
